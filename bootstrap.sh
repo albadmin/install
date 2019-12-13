@@ -55,7 +55,7 @@ openbaton_bootstrap_version=${openbaton_bootstrap_version:-$OPENBATON_BOOTSTRAP_
 
 OPENBATON_BOOTSTRAP_ENV_FILE="/tmp/bootstrap_env"
 
-OPENBATON_BOOTSTRAP_FUNCTIONS_BASE_URL=http://get.openbaton.org/bootstraps/
+OPENBATON_BOOTSTRAP_FUNCTIONS_BASE_URL=https://raw.githubusercontent.com/albadmin/install/master/bootstraps/
 
 DEBIAN_FRONTEND_DEFAULT="dialog"
 export DEBIAN_FRONTEND=${DEBIAN_FRONTEND:-$DEBIAN_FRONTEND_DEFAULT}
@@ -110,7 +110,7 @@ usage () {
 prereq () {
     $_ex 'apt-get install -y wget whiptail'
 
-    wget -O bootstrap-common-functions "${OPENBATON_BOOTSTRAP_FUNCTIONS_BASE_URL}/${openbaton_bootstrap_version}/bootstrap-common-functions"
+    wget -O bootstrap-common-functions "${OPENBATON_BOOTSTRAP_FUNCTIONS_BASE_URL}/bootstrap-common-functions"
     . ./bootstrap-common-functions
 }
 
@@ -128,7 +128,7 @@ check_jre_8_installed () {
 }
 
 main_src () {
-    wget -O bootstrap-src-functions "${OPENBATON_BOOTSTRAP_FUNCTIONS_BASE_URL}/${openbaton_bootstrap_version}/bootstrap-src-functions"
+    wget -O bootstrap-src-functions "${OPENBATON_BOOTSTRAP_FUNCTIONS_BASE_URL}/bootstrap-src-functions"
     . ./bootstrap-src-functions
     src_bootstrap
 }
@@ -136,7 +136,7 @@ main_src () {
 main_deb () {
     check_jre_8_installed
 
-    wget -O bootstrap-deb-functions "${OPENBATON_BOOTSTRAP_FUNCTIONS_BASE_URL}/${openbaton_bootstrap_version}/bootstrap-deb-functions"
+    wget -O bootstrap-deb-functions "${OPENBATON_BOOTSTRAP_FUNCTIONS_BASE_URL}/bootstrap-deb-functions"
     . ./bootstrap-deb-functions
     deb_bootstrap "${1}" "${2}"           # ${1} = release/nightly ; ${2} = distribution codename
 }
